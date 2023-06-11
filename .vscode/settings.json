@@ -1,9 +1,0 @@
-{
-    "files.associations": {
-        "*.json": "jsonc",
-        "view.h": "c",
-        "limits": "c",
-        "type_traits": "c",
-        "typeinfo": "c"
-    }
-}
