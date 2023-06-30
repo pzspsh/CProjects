@@ -4,27 +4,33 @@
 
 ### 24.2 实现简单的Web服务器端
 
-程序实例
-webserv_linux.c
+#### 程序实例
 
-```
-第24章 制作HTTP服务器端
+#### webserv_linux.c
+
+
+
+### 第24章 制作HTTP服务器端
+
 Web 服务器端是以 HTTP 协议为基础传输超文本的服务器端。
 
+#### 24.1 HTTP概要
 
-24.1 HTTP概要
 略，详见 《图解HTTP》和《计算机网络(谢希仁)》的笔记
 
+##### 24.2 实现简单的Web服务器端
 
-24.2 实现简单的Web服务器端
 Web 服务器端采用 HTTP 协议，即使使用 IOCP 或 epoll 模型也不会大幅提升性能。因为客户端和服务器端交换一次数据后就会断开连接，没有足够时间发挥 IOCP 和 epoll 的优势，当服务器端和客户端保持较长连接且频繁发送大小不一的消息时，这两种模型的优势才会比较突出。
 因此使用多线程模型来实现 Web 服务器端。
 
+##### 程序实例
 
-程序实例
-webserv_linux.c
+##### webserv_linux.c
+
 这是一个非常基础的 Web 服务器，只能处理 GET 请求报文访问一个位于程序同目录下的 index.html 文件，且该 index.html 文件的内容不能随意改动，因为 HTTP 响应报文的长度在程序中已经写死了。
 此服务器的访问方式：http://IP:port/index.html，不能以其他方式访问。
+
+```c
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>

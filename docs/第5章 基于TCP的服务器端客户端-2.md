@@ -104,21 +104,29 @@ str_men = read(sock, message, BUF_SIZE - 1);
 
 
 
-套接字 I/O 缓冲的特性：
-	1、I/O 缓冲在每个套接字中单独存在。
-	2、I/O 缓冲在创建套接字时自动生成。
-	3、即使关闭套接字也会继续传递输出缓冲中遗留的数据。
-	4、关闭套接字将丢失输入缓冲中的数据。
+##### 套接字 I/O 缓冲的特性：
 
-```
-5.3 基于Windows的实现
+​	1、I/O 缓冲在每个套接字中单独存在。
+​	2、I/O 缓冲在创建套接字时自动生成。
+​	3、即使关闭套接字也会继续传递输出缓冲中遗留的数据。
+​	4、关闭套接字将丢失输入缓冲中的数据。
+
+
+
+### 5.3 基于Windows的实现
+
 略。
 
 
-本章的程序实例
-echo_client2.c
+
+#### 本章的程序实例
+
+#### echo_client2.c
+
 此程序是回声客户端的完美实现，它记录了发送给服务器端的数据的长度，然后从套接字读取相同长度的数据。
 理解：感觉这个程序并不完美，只解决了拆包的问题，粘包的问题并未完美地解决。
+
+```c
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -185,12 +193,18 @@ void error_handling(char *message)
     fputc('\n', stderr);
     exit(1);
 }
+```
 
-op_client.c
+
+
+#### op_client.c
+
 这是计算器客户端的实现。
 注意两个地方：
-应用层协议的定义和实现。
-在同一个数组中保存并传输多种数据类型的方式：将数组声明为 char 类型，在向数组读写内容时转换指针的类型。
+		1、应用层协议的定义和实现。
+		2、在同一个数组中保存并传输多种数据类型的方式：将数组声明为 char 类型，在向数组读写内容时转换指针的类型。
+
+```c
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -259,8 +273,13 @@ void error_handling(char *message)
     fputc('\n', stderr);
     exit(1);
 }
+```
 
-op_server.c
+
+
+#### op_server.c
+
+```c
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -352,6 +371,5 @@ void error_handling(char *message)
     fputc('\n', stderr);
     exit(1);
 }
-
 ```
 
