@@ -5,12 +5,16 @@
 */
 #include <windows.h>
 #include <stdio.h>
-#define N 10
+#define N 3
 struct student
 {
     char num[6];
     char name[20];
-    int score[3];
+    char sex[20];
+    int english;
+    int math;
+    int computer;
+    // int score[3];
 } stu[N];
 int main()
 {
@@ -20,23 +24,21 @@ int main()
     printf("输入学生的学号、姓名和三门课的成绩：\n");
     for (i = 0; i < N; i++)
     {
-        scanf("%s%s", &stu[i].num, &stu[i].name);
-        for (j = 0; j < 3; j++)
-        {
-            scanf("%d", &stu[i].score[j]);
-            sum += stu[i].score[j];
-        }
+        scanf("%s%s%s", &stu[i].num, &stu[i].name, &stu[i].sex); // &stu[i].english, &stu[i].math, &stu[i].computer
+        scanf("%d %d %d", &stu[i].english, &stu[i].math, &stu[i].computer);
+        sum += stu[i].english;
+        sum += stu[i].math;
+        sum += stu[i].computer;
         aver[i] = sum / 3.0; // 每个学生的平均成绩
         sum = 0;
         average += aver[i];
     }
     average = average / N; // 总平均成绩
-    printf("学号   姓名   成绩1    成绩2     成绩3    平均成绩\n");
+    printf("学号   姓名  性别   成绩1    成绩2     成绩3    平均成绩\n");
     for (i = 0; i < N; i++)
     {
-        printf("%s%10s", stu[i].num, stu[i].name);
-        for (j = 0; j < 3; j++)
-            printf("%8d", stu[i].score[j]);
+        printf("%s%5s%5s", stu[i].num, stu[i].name, stu[i].sex);
+        printf("%5d%5d%5d", stu[i].english, stu[i].math, stu[i].computer);
         printf("%7.2f\n", aver[i]);
     }
     temp = aver[0];
@@ -48,7 +50,7 @@ int main()
         }
     printf("学生的总平均分为：%7.2f\n", average);
     printf("平均分最高的学生的数据为：\n");
-    printf("学号   姓名   成绩1    成绩2     成绩3   平均成绩\n");
-    printf("%s%10s%5d%5d%5d%7.2f\n", stu[imax].num, stu[imax].name, stu[imax].score[0], stu[imax].score[1], stu[imax].score[2], aver[imax]);
+    printf("学号   姓名    性别   成绩1    成绩2     成绩3   平均成绩\n");
+    printf("%s%10s%10s%5d%5d%5d%7.2f\n", stu[imax].num, stu[imax].name, stu[imax].sex, stu[imax].english, stu[imax].math, stu[imax].computer, aver[imax]);
     return 0;
 }
