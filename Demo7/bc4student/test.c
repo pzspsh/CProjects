@@ -5,7 +5,7 @@
 */
 #include <windows.h>
 #include <stdio.h>
-#define N 1
+#define N 10
 struct student
 {
     char num[6];

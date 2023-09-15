@@ -9,7 +9,7 @@ int main()
 {
     SetConsoleOutputCP(65001); // 解决乱码问题
     int n, i;
-    printf("请输入整数：");
+    printf("请输入要分解质因数的整数：");
     scanf("%d", &n);
     printf("%d=", n);
     for (i = 2; i <= n; i++)
