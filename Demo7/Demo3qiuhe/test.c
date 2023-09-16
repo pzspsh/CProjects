@@ -3,62 +3,48 @@
 @Author : pan
 @Time   : 2023-09-15 14:05:11
 */
-// 3.函数编程题
 #include <windows.h>
 #include <stdio.h>
-#include <string.h>
+
+int sumOfNumbers(const char *s)
+{
+    int sum = 0;
+    int num = 0;
+
+    // 遍历字符串
+    for (int i = 0; s[i] != '\0'; i++)
+    {
+        // 判断当前字符是否为数字
+        if (s[i] >= '0' && s[i] <= '9')
+        {
+            // 将字符转换为数字并累加到当前数值
+            num = num * 10 + (s[i] - '0');
+        }
+        else
+        {
+            // 遇到非数字字符，将当前数值累加到总和，并重置为0
+            sum += num;
+            num = 0;
+        }
+    }
+
+    // 将最后一个数值累加到总和
+    sum += num;
+    return sum;
+}
+
 int main()
 {
     SetConsoleOutputCP(65001); // 解决乱码问题
-    const int N = 1000;
-    char str[N];
-    printf("请求你要提取数据求和的字符串：");
-    scanf("%s", str);
-    int n = strlen(str);
-    int t[N];
-    memset(t, -1, sizeof(t));
-    int k = 0;
-    int flag = -1;
-    int temp = 0;
-    int i;
-    for (i = 0; i <= n; i++)
-    {
-        if ((str[i] >= '0') && (str[i] <= '9'))
-        {
-            if (flag == 1)
-            {
-                temp = temp * 10 + str[i] - '0';
-            }
-            else
-            {
-                flag = 1;
-                temp = str[i] - '0';
-            }
-        }
-        else
-        {
-            if (flag == 1)
-            {
-                t[k] = temp;
-                k++;
-            }
-            flag = 0;
-        }
-    }
-    int sum = 0;
-    for (i = 0; i < N; i++)
-    {
-        if (t[i] == -1)
-            break;
-        if (i == 0)
-        {
-            printf("%d", t[i]);
-        }
-        else
-        {
-            printf("+%d", t[i]);
-        }
-        sum += t[i];
-    }
-    printf("=%d", sum);
+    char s[100];
+
+    printf("请输入一个字符串：");
+    fgets(s, sizeof(s), stdin);
+
+    // 调用函数计算和的结果
+    int result = sumOfNumbers(s);
+
+    printf("自然数之和为：%d\n", result);
+
+    return 0;
 }
