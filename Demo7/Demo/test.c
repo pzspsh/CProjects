@@ -3,34 +3,36 @@
 @Author : pan
 @Time   : 2023-11-23 19:16:51
 */
-#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
-#include <math.h>
+#include <string.h>
+
 int main()
 {
-    int m, n;
-    scanf("%d%d", &m, &n);
-    for (int i = 0; m <= n; m = m + 1)
+    int i, j, cnt = 0, slen = 0;
+    char s[200];
+    char m;
+    scanf("%s", s);
+    slen = strlen(s);
+    if (slen > 0)
     {
-        int b = m % 7;
-        if (b == 0)
+        for (i = 0; i < slen; i++)
         {
-            printf("%d is a multiple of 7\n", m);
-        }
-        int c = m;
-        while (c != 0)
-        {
-            int d = c % 10;
-            if (d == 7)
+            if (s[i] == '*')
             {
-                printf("%d contains 7\n", m);
-                break;
+                strcat(s, "*"); // 把*号相加到s字符串的后面
+                cnt++;          // 计算前面*号的字符串个数
             }
             else
             {
-                c = c / 10;
+                break;
             }
         }
+        slen = strlen(s);
+        if (slen > cnt)
+        {
+            memmove(s, s + cnt, slen - cnt + 1); // 删除前面的*字符串
+        }
     }
+    printf("%s", s);
     return 0;
 }
