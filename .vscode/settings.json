@@ -1,6 +1,0 @@
-{
-    "files.associations": {
-        "*.json": "jsonc",
-        "system_error": "c"
-    }
-}
